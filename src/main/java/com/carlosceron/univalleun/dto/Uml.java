@@ -13,7 +13,8 @@ public class Uml {
     private String category;
     private String sub_category;
     private String section;
-    private Integer sentence_id;
+    @Column(name = "sentence_id")
+    private Integer sentenceId;
     private String sentence;
     private Integer begin;
     private Integer end;
@@ -89,12 +90,12 @@ public class Uml {
         this.section = section;
     }
 
-    public Integer getSentence_id() {
-        return sentence_id;
+    public Integer getSentenceId() {
+        return sentenceId;
     }
 
-    public void setSentence_id(Integer sentence_id) {
-        this.sentence_id = sentence_id;
+    public void setSentenceId(Integer sentenceId) {
+        this.sentenceId = sentenceId;
     }
 
     public String getSentence() {

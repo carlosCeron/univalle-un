@@ -28,7 +28,7 @@ public class Main {
 	public void processSentence(String text) {
 		List<CoreMap> sentences = tokenizer.tokenizeDocument(text.toLowerCase());
 		annotator1.process(sentences, "path");		 
-		annotator1.printScopes();		
+		//annotator1.printScopes();
 		System.out.println("\n ============  Finished ok============ \n");
 	}
 	
@@ -47,7 +47,7 @@ public class Main {
 	public void processDocument(String doc) {
 		 List<CoreMap> sentences = tokenizer.tokenizeDocument(doc);
 		 annotator1.process(sentences, "path");		 
-		 annotator1.printScopes();
+		 //annotator1.printScopes();
 		 
 		ArrayList<Scope>  scopeList = annotator1.getScopeList();
 		saveScopes(scopeList, "uncertain");
@@ -70,7 +70,7 @@ public class Main {
 			   for(CoreMap sentence: sentences) {
 				   List<CoreMap> sent= tokenizer.tokenizeDocument(sentence.toString());
 				   annotator1.process(sent, line.getFilePath());
-				   annotator1.printScopes();
+				   //annotator1.printScopes();
 			   }//end for
 			   
 			   i++;

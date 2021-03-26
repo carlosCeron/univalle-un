@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.carlosceron.univalleun.dto.Token;
+import com.carlosceron.univalleun.repository.TokenRepository;
 import cz.cuni.mff.ufal.udpipe.Model;
 import cz.cuni.mff.ufal.udpipe.Pipeline;
 import edu.stanford.nlp.coref.data.Document;
@@ -22,8 +24,9 @@ import edu.stanford.nlp.ling.CoreAnnotations.TextAnnotation;
 import edu.stanford.nlp.ling.CoreAnnotations.TokensAnnotation;
 import edu.stanford.nlp.pipeline.CoreNLPProtos.Sentence;
 import edu.stanford.nlp.util.CoreMap;
-
+import org.springframework.beans.factory.annotation.Autowired;
 public class Annotator {
+
 	
      private ArrayList<Scope> scopeList;//to save scope     
      private CuesDetector cuesDetection;
@@ -118,7 +121,7 @@ public class Annotator {
 	 }//end method
 	 /**
 	  * add scopes to list
-	  * @param scopeList
+	  * @param
 	  * @param 
 	  */
 	 public void addNegationsToIndices(ArrayList <Scope> list1) {
@@ -154,7 +157,7 @@ public class Annotator {
 		  * Print scopes
 		  */
 		   
-		  public void printScopes() {
+		  public void printScopes(String sentenceText, Integer sentenceId, TokenRepository tokenRepository) {
 			  System.out.println("\n \n *********************  Results ******************************\n ");
 			  for(Scope scope: scopeList) {
 				  String sentence =scope.getSentence();
@@ -162,6 +165,26 @@ public class Annotator {
 				  int begin = scope.getBegin();
 				  int end = scope.getEnd();
 				  String type= scope.getType();
+
+				  System.out.println(sentenceText);
+				  System.out.println(begin);
+				  System.out.println(end);
+
+
+
+				  if( cue != null && type != null && sentence != null) {
+					  Token token = new Token();
+					  token.setCue(cue + " - " + type );
+					  if(begin < end) {
+						  token.setScope(sentence.substring(begin, end));
+					  }else{
+						  token.setScope(sentence);
+					  }
+					  token.setSentence(sentenceText);
+					  token.setSentenceId(sentenceId);
+					  token.setType(scope.getType());
+					  tokenRepository.save(token);
+				  }
 				  
 				  System.out.println ("\nCue:" + cue + "\t[" + type + "]" );		 	
 				  //System.out.println ("Sentence: " + sentence);
@@ -174,6 +197,8 @@ public class Annotator {
 					// TODO: handle exception
 				}
 			  }
+
+			  this.cleanScopeList();
 		  }//end
 	   
    /**

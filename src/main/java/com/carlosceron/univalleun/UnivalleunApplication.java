@@ -11,17 +11,14 @@ import java.util.List;
 @SpringBootApplication
 public class UnivalleunApplication {
 
-    static SpanishTokenizer tokenizer;
-    static Annotator annotator1;
+
 
     public static void main(String[] args) {
-        tokenizer =  new SpanishTokenizer();
-        annotator1 = new Annotator();
-        String text1 = "Posible cancer de pulmón en 2018, pero espero resultados, no dolor de cabeza.";
+
+        /*String text1 = "Posible cancer de pulmón en 2018, pero espero resultados, no dolor de cabeza.";
         List<CoreMap> sentences = tokenizer.tokenizeDocument(text1.toLowerCase());
         annotator1.process(sentences, "path");
-        annotator1.printScopes();
-        System.out.println("\n ============  Finished ok1============ \n");
+        annotator1.printScopes(); */
         SpringApplication.run(UnivalleunApplication.class, args);
     }
 
