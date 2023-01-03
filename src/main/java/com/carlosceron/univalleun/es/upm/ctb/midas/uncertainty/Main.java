@@ -12,6 +12,7 @@ import edu.stanford.nlp.util.CoreMap;
 public class Main {
 	SpanishTokenizer tokenizer;
 	Annotator annotator1;
+	SpanishTokenizer spanishTokenizer;
 	
 	//Solo para nubes corpus
 	ArrayList<String> nubesCorpus;
@@ -27,8 +28,10 @@ public class Main {
 	
 	public void processSentence(String text) {
 		List<CoreMap> sentences = tokenizer.tokenizeDocument(text.toLowerCase());
-		annotator1.process(sentences, "path");		 
-		//annotator1.printScopes();
+		System.out.println(sentences.get(0));
+		annotator1.process(sentences, "path");
+		annotator1.getScopeList().stream().forEach(item -> System.out.println(item.getType()));
+//		annotator1.printScopes();
 		System.out.println("\n ============  Finished ok============ \n");
 	}
 	

@@ -11,9 +11,10 @@ import java.util.List;
 
 public interface UmlRepository extends PagingAndSortingRepository<Uml, Integer> {
 
-    @Query("SELECT distinct d.sentenceId, d.sentence FROM Uml d")
-    Page<Object> findDistinctBySentenceId(Pageable pageable);
+    @Query("SELECT distinct u from Uml u")
+    Page<Uml> encontrarElementosDistintos(Pageable pageable);
 
-    Page<Uml> findAll(Pageable pageable);
+    @Query("SELECT distinct u.document_id from Uml u WHERE u.cui = ?1")
+    List<Integer> encontrarDocumentoIdUnicoPorCUI(String cui);
 
 }

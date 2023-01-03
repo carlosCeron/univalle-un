@@ -61,9 +61,9 @@ public class SpanishTokenizer {
 	        	 for (CoreLabel token: sentence.get(TokensAnnotation.class)) {
 	                 String word = token.get(TextAnnotation.class);
 	                 token.beginPosition();
-	                //System.out.println("Token: " +  word );
-	                System.out.println(word + " -> " + token.get(PartOfSpeechAnnotation.class) +
-	                		"\t" + token.beginPosition() + ":" + token.endPosition());
+	                System.out.println("Token: " +  word );
+//	                System.out.println(word + " -> " + token.get(PartOfSpeechAnnotation.class) +
+//	                		"\t" + token.beginPosition() + ":" + token.endPosition());
 	                
 	             }
 	          

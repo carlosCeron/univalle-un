@@ -8,8 +8,11 @@ public class Token {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
+    @Column(length = 1000)
     private String cue;
+    @Column(length = 1000)
     private String scope;
+    @Column(length = 1000)
     private String sentence;
     private String type;
     private Integer sentenceId;
